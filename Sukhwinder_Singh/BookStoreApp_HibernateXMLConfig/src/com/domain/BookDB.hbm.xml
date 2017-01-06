@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.domain.Book" table="book" >
+        <id name="isbn" type="java.lang.Integer">
+            <column name="ISBN_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="publication" type="string">
+            <column name="PUB" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="pubDate" type="string">
+            <column name="PUB_DATE" length="20" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>
