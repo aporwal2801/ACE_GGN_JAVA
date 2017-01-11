@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+
+	<bean id="helloWorld" class="com.sapient.spring.di.HelloWorld">
+		<property name="message" value="Hello World!" />
+	</bean>
+
+	<bean id="student" class="com.sapient.spring.di.required.Student">
+		<property name="age" value="29" />
+		<property name="name" value="Ishan Aggarwal" />
+	</bean>
+
+	<bean name="myHelloWorld" class="com.sapient.spring.di.HelloWorld">
+		<property name="message" value="Hello World12!" />
+	</bean>
+
+	<bean name="employee" class="com.sapient.di.autowired.Employee">
+		<property name="name" value="Ishan Aggarwal" />
+		<property name="age" value="29" />
+		<!-- <property name="address" ref="address1" /> -->
+	</bean>
+
+	<bean name="address" class="com.sapient.di.autowired.Address">
+		<property name="address" value="17-B" />
+	</bean>
+
+	<!-- <bean name="age" class="java.lang.Integer"> <property name="age" value="29" 
+		/> </bean> -->
+	<bean name="address1" class="com.sapient.di.autowired.Address">
+		<property name="address" value="18-B" />
+	</bean>
+
+	<!-- <bean id="address" class="com.sapient.di.autowired.Address"> <property 
+		name="address" value="19-B" /> </bean> -->
+
+
+	<!-- <bean name="classA" class="com.sapient.circular.dependency.ClassA"> 
+		<constructor-arg ref="classB" /> </bean> <bean name="classB" class="com.sapient.circular.dependency.ClassB"> 
+		<constructor-arg ref="classA" /> </bean> -->
+
+	<bean name="classC" class="com.sapient.circular.dependency.solution.ClassC">
+		<property name="classD" ref="classD" />
+	</bean>
+
+	<bean name="classD" class="com.sapient.circular.dependency.solution.ClassD">
+		<property name="classC" ref="classC" />
+	</bean>
+
+	<bean name="studentCollection" class="com.sapient.inject.collections.StudentCollection">
+		<property name="age" value="29" />
+		<property name="name" value="Ishan Aggarwal" />
+		<property name="addressList">
+			<list>
+				<value>SRI LANKA</value>
+				<value>INDIA</value>
+				<value>USA</value>
+				<value>SRI LANKA</value>
+			</list>
+		</property>
+
+		<property name="addressSet">
+			<list>
+				<value>INDIA</value>
+				<value>USA</value>
+				<value>SRI LANKA</value>
+				<value>USA</value>
+			</list>
+		</property>
+
+		<property name="addressMap">
+			<map>
+				<entry key="1" value="INDIA" />
+				<entry key="2" value="USA" />
+				<entry key="3" value="SRI LANKA" />
+			</map>
+		</property>
+
+		<property name="addressProp">
+			<props>
+				<prop key="1">INDIA</prop>
+				<prop key="2">USA</prop>
+				<prop key="THREE">SRI LANKA</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<bean id="inner1" class="com.sapient.scope.Inner" abstract="true"
+	scope="prototype">
+		<property name="innerString" value="Inner Class String" />
+		<property name="innerInteger" value="20" />
+	</bean>
+
+
+	<bean id="outer" class="com.sapient.scope.Outer" scope="singleton">
+		<property name="outerString" value="Outer Class String" />
+		<property name="outerInteger" value="100" />
+		<property name="inner" ref="inner1" />
+
+	</bean>
+
+</beans>

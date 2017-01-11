@@ -1,0 +1,34 @@
+class Drawing {
+	Triangle triangle;
+
+	Drawing(Triangle tri) {
+		this.triangle = tri;
+	}
+}
+
+// Spring will create these objects at runtime and will populate them.
+
+Spring Framework :-
+	Lightweight framework
+	Modular
+	Dependency Injection
+	IOC Container
+	Aspect Oriented
+	
+
+-------------------------------------------------------------------------------
+								Core Container
+	Beans				Core				Context						SpEL
+-------------------------------------------------------------------------------
+								Test
+-------------------------------------------------------------------------------
+
+How it is creating object at runtime...
+Through configuration files, spring is aware how different objects will be injected.
+
+POJO - Plain Old Java Object with getter and setters
+
+
+FileSystemXmlApplicationContext : will be used in the cases where you don't want your properties and xml file to be deployed as part of
+	the war/sar. So that you can changed it at any point of time and those changes will be picked up.
+ClassPathXmlApplicationContext : will be used where properties/xml files will be deployed as part of the war/sar.
