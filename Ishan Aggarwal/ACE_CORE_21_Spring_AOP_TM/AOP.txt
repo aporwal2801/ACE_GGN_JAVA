@@ -1,0 +1,72 @@
+AspectJ - There are all part of AOP. (Spring has internally implemented AspectJ)
+We are segregating our cross cutting concerns from our main logic.
+
+Aspect : Module Name
+Advice : What and when
+JoinPoint : JoinPoints are points where you have applied an advice.
+PointCut : What all places you can apply a JoinPoint (Where to apply the advices)
+
+{JoinPoint is subset of PointCut}
+
+Introduction/mixing : When we add a new method without changing the actual definition of class/object.
+{JS has a property called
+
+Weaving : We are de-coupling our main concern and cross cutting concerns.
+	Compile time weaving - two things come together at compile time and will make your byte code.
+	Class Loading time weaving - when JVM loads a class then the weaving is done.
+	Dynamic Proxy - When you create a class then the weaving is done.
+	
+	----------
+	| Target |
+	----------
+	
+Spring supports only method where you can apply an advice.
+Spring supports only runtime proxy pattern. <aop:aspectj-autoproxy />
+AspectJ supports advice to be applied to a variable, constructor and methods.
+
+Reflection API - java.lang.reflect.Proxy is a class and java.land.reflect.InvocationHandler is an interface.
+These two things can be used to achieve the aop behavior using core java only.
+
+Spring is using AspectJ expression language.
+
+Aspect calls are not asynchronous. So, Aspect call should not take to much time than your actual method call.
+It can be used in situations like - logging, security, transaction management, email shooting for build failures.
+For build failures and mail sending work - do not write the logic for sending email in the aspect itself. (Instead you should write
+the logic for adding data in to queue and then process the elements from the queue later on.)
+
+Interceptor - Time based logging.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		Transaction Management
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+ACID
+	Atomic : Smallest unit of work which will finish together or roll-back together
+	Consistency : Constraints that we put (like foreign key so our data in the table rows should satisfy those constraints)
+	Isolation : Customer table rows are getting updated. So if operations are executed in parallel should result in same data
+			if operations are executed in serial order. 
+	Durability: Once a transaction is
+	
+What is transaction?
+Transaction is that we want to do some work in atomic way. (based on ACID property)
+	Declarative Transaction (Container manages the transaction - @Transaction )
+	Programmatic Transaction (You need to manage the transaction on your own.)
+
+CustomerService {
+	processOrder() {
+		--- Order Place
+				--- getOrderId (It should be @Require-new)
+		--- Invoice Generation
+		--- Notification Service
+	}
+}
+
+ThreadLocal( maintains a hashMap - key is your currentThread and connection is your value.)
+Spring is using ThreadLocal to achieve multiple scope transactions.
+
+== Propagation Level
+	> requires-new
+	> required
+	> mandatory
+	> support
+	> nested
+	

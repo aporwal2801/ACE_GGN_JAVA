@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+ 
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.sape.practise.aop.spring" />
+
+<!-- Configure Customer Service bean -->
+<bean name="customerService" class="com.sape.practise.aop.CustomerServiceImpl"/>
+	
+
+<!-- Configure Aspect Beans -->
+<bean name="customerAspect" class="com.sape.practise.aop.spring.CustomerAspect" />
+<bean name="additonalDetails" class="com.sape.practise.aop.spring.CustomerAdditonalServiceImpl"/>
+<!-- <bean name="employeeAspectPointcut" class="com.journaldev.spring.aspect.EmployeeAspectPointcut" /> -->
+<!-- <bean name="employeeAspectJoinPoint" class="com.journaldev.spring.aspect.EmployeeAspectJoinPoint" /> -->
+<!-- <bean name="employeeAfterAspect" class="com.journaldev.spring.aspect.EmployeeAfterAspect" /> -->
+<!-- <bean name="employeeAroundAspect" class="com.journaldev.spring.aspect.EmployeeAroundAspect" /> -->
+<!-- <bean name="employeeAnnotationAspect" class="com.journaldev.spring.aspect.EmployeeAnnotationAspect" /> -->
+
+</beans>
